@@ -1,18 +1,18 @@
 import axios from "axios";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
-  const callApi = async()=>{
-    axios.get("/api").then((res)=>{console.log(res.data.test)});
-  };
+ const [data, setData] = useState('과연');
 
-  useEffect(()=>{
-    callApi();
-  }, []);
+ useEffect(() => {
+    axios.get('/api/post')
+    .then((res) => {console.log(res.data.test);setData(res.data.test)})
+    
+ },[])
   
   return (
     <div className="App">
-      test
+      {data}
     </div>
   );
 }
